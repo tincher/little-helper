@@ -9,11 +9,15 @@ var bodyParser = require('body-parser')
 }));
 
 app.get('/', (req, res) => res.send('Hello World!'))
-app.post('/copyFile', function (req, res) {
-    console.log('post copyfile')
+app.post('/copyNewest', function (req, res) {
+    console.log('copyNewest')
     copyFile();
     res.send('Got a POST request')
     //res.download
+})
+app.post('/copyTimeroom', function (req, res) {
+    console.log('copyTimeroom');
+    console.log(req);
 })
 app.use(express.static('public'))
 
