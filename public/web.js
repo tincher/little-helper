@@ -4,7 +4,7 @@ $(document).ready(function () {
         e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "http://localhost:3000/copyFile",
+            url: "http://85.214.100.20:3000/copyFile",
             data: {
                 id: $(this).val(), // < note use of 'this' here
                 access_token: $("#access_token").val()
