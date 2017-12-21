@@ -27,7 +27,7 @@ function copyFile() {
     var fs = require('fs');
 
     // destination.txt will be created or overwritten by default.
-    fs.copyFile('/users/jojoe/desktop/little-helper2/from/test.jpg', '/users/jojoe/desktop/destination.jpg', (err) => {
+    fs.copyFile('~/little-helper/from/test.jpg', '~/destination.jpg', (err) => {
         if (err) throw err;
         console.log('source.jpg was copied to destination.jpg');
     });
