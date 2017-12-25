@@ -2,6 +2,17 @@ const express = require('express')
 const app = express()
 const fs = require('fs');
 const path = require('path');
+const exec = require('child_process').exec;
+const testscript = exec('sh ~/little-helper/scripts/testscript.sh');
+
+testscript.stdout.on('data', data => {
+    console.log(data);
+});
+
+testscript.stderr.on('data', data => {
+    console.log(data);
+});
+
 var bodyParser = require('body-parser')
     app.use( bodyParser.json() );       // to support JSON-encoded bodies
     app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -26,6 +37,8 @@ app.listen(3000, () => console.log('Example app listening on port 3000!'))
 function log_string(string){
     console.log(string)
 }
+
+exec
 
 function copyFile() {
     var fs = require('fs');
