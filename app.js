@@ -6,7 +6,16 @@ const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 const dburl = 'mongodb://localhost:27017/little-helper';
 const dbName = 'little-helper';
+const exec = require('child_process').exec;
+const testscript = exec('sh ~/little-helper/scripts/testscript.sh');
 
+testscript.stdout.on('data', data => {
+    console.log(data);
+});
+
+testscript.stderr.on('data', data => {
+    console.log(data);
+});
 var bodyParser = require('body-parser')
     app.use( bodyParser.json() );       // to support JSON-encoded bodies
     app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -45,6 +54,8 @@ app.listen(3000, () => console.log('Example app listening on port 3000!'))
 function log_string(string){
     console.log(string)
 }
+
+exec
 
 function copyFile() {
     var fileslist = [];
