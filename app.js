@@ -32,7 +32,7 @@ app.post('/copyTimeroom', (req, res) => {
     console.log('copyTimeroom');
     console.log(req);
 })
-app.use(express.static('public'))
+app.use(express.static('dimension'))
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))
 
