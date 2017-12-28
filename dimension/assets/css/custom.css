@@ -15,14 +15,20 @@
 	color: inherit;
 	display: block;
 	outline: 0;
-	padding: 0 1rem;
+	/* padding: 0 1rem; */
 	text-decoration: none;
     margin-top: 10px;
-	/* width: 100%; */
+	width: 100%;
 }
 
 .halfdiv{
     width: 50%;
     float: left;
     margin-bottom: 10px;
+}
+
+.progress {
+    background-color: purple;
+    width: 0%;
+    height: 100%;
 }
