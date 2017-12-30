@@ -93,6 +93,9 @@ function copyFile() {
 
     // connect to Mongodb
     MongoClient.connect(dburl, function(err, client) {
+        if (err) {
+            console.log(err);
+        }
         console.log("Connected successfully to server");
 
         // connect to database and collection
