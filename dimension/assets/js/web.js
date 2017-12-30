@@ -3,7 +3,8 @@ $(document).ready(function() {
     $('#button-newest').click(function(e) {
         e.preventDefault();
         $.ajax({
-            url: 'http://localhost:3000/copyNewest',
+            url: 'http://192.168.2.124:3000/copyNewest',
+            // url: 'http://localhost:3000/copyNewest',
             type: 'POST'
         }).done(() => {
 
@@ -18,7 +19,8 @@ $(document).ready(function() {
         var percent = 100 * barwidth / parentwidth;
         $('#button-newest').prop('disabled', true);
         $.ajax({
-            url: "http://localhost:3000/progress",
+            // url: "http://localhost:3000/progress",
+            url: 'http://192.168.2.124:3000/progress',
             type: 'GET',
             crossDomain: true
 

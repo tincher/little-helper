@@ -144,8 +144,10 @@ function copyFile() {
 
                 //copy given file (path)
                 docnames.forEach(docname => {
+                    progress = 0;
                     var srcfile = srcpath + "/" + docname;
                     var destfile = destpath + "/" + docname;
+                    progress = progress + docnames.length / 100;
                     console.log("src: " + srcfile);
                     console.log("dest: " + destfile);
                     fs.copyFile(srcfile, destfile, (err) => {
