@@ -18,16 +18,28 @@ const mountscript = exec('sh ~/little-helper/scripts/mount.sh');
 const unmountscript = exec('sh ~/little-helper/scripts/unmount.sh');
 
 // log stdout of testscript
-testscript.stdout.on('data', data => {console.log(data);});
-testscript.stderr.on('data', data => {console.log(data);});
+testscript.stdout.on('data', data => {
+    console.log(data);
+});
+testscript.stderr.on('data', data => {
+    console.log(data);
+});
 
 // log stdout of mountscript
-mountscript.stdout.on('data', data => {console.log(data);});
-mountscript.stderr.on('data', data => {console.log(data);});
+mountscript.stdout.on('data', data => {
+    console.log(data);
+});
+mountscript.stderr.on('data', data => {
+    console.log(data);
+});
 
 // log stdout of unmountscript
-unmountscript.stdout.on('data', data => {console.log(data);});
-unmountscript.stderr.on('data', data => {console.log(data);});
+unmountscript.stdout.on('data', data => {
+    console.log(data);
+});
+unmountscript.stderr.on('data', data => {
+    console.log(data);
+});
 
 // init progress for progressbar
 var progress = 100;
@@ -37,9 +49,9 @@ var progress = 100;
 app.listen(3000, () => console.log('Example app listening on port 3000!'))
 
 var bodyParser = require('body-parser')
-    app.use(bodyParser.json() );       // to support JSON-encoded bodies
-    app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-        extended: true
+app.use(bodyParser.json()); // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
+    extended: true
 }));
 
 // mapping post for copyNewest
@@ -60,16 +72,24 @@ app.use(express.static('dimension'))
 
 
 // unused log function
-function log_string(string){
-    console.log(string)
+function log_string(string) {
+    console.log(string);
 }
 
 // whole copy file thingy TODO needs refactoring
 function copyFile() {
+    // array of objects for DB
     var fileslist = [];
-    var path = '/users/jojoe/desktop';
-    // var path = '/home/pi/photos'
-    // var path = '/root/little-helper/from/test.jpg';
+    // array of the filenames as strings
+    var docnames = [];
+
+    // config for pi
+    var srcpath = '~/android/';
+    var destpath = '/home/pi/photos'
+
+    // // config for windows
+    // var srcpath = '/users/jojoe/Desktop'
+    // var destpath = '/users/jojoe/Desktop/nfolder';
 
     // connect to Mongodb
     MongoClient.connect(dburl, function(err, client) {
@@ -80,19 +100,18 @@ function copyFile() {
         var collection = lhdatabase.collection("little-helper");
 
         // get content of the source directory
-        fs.readdir(path, (err, files) => {
+        fs.readdir(srcpath, (err, files) => {
             var nextindex = 0;
 
             // get collection content as array
             collection.find().toArray((err, docs) => {
 
-                // array of the filenames as strings
-                var docnames = [];
+                // var docnames = [];
 
                 // get next index manually TODO automated method
                 if (docs.length != 0) {
                     docs.forEach(doc => {
-                        if(nextindex < doc._id){
+                        if (nextindex < doc._id) {
                             nextindex = doc._id + 1;
                         }
                         docnames.push(doc.filename);
@@ -113,7 +132,7 @@ function copyFile() {
                 });
 
                 //insert the objects into the DB
-                if(fileslist.length != 0){
+                if (fileslist.length != 0) {
                     collection.insertMany(fileslist, (err, result) => {
                         if (err) {
                             console.log(err);
@@ -122,18 +141,21 @@ function copyFile() {
                         }
                     });
                 }
+
+                //copy given file (path)
+                docnames.forEach(docname => {
+                    var srcfile = srcpath + "/" + docname;
+                    var destfile = destpath + "/" + docname;
+                    console.log("src: " + srcfile);
+                    console.log("dest: " + destfile);
+                    fs.copyFile(srcfile, destfile, (err) => {
+                        if (err) throw err;
+                        console.log("copied file successfully");
+                    });
+                })
             });
         });
     });
 
-    // // get the mtime of the given file(path)
-    // fs.stat(path, function(err, stats) {
-    //     console.log(stats.mtime);
-    // })
 
-    // //copy given file (path)
-    // fs.copyFile(path, '/root/destination.jpg', (err) => {
-    //     if (err) throw err;
-    //     console.log('source.jpg was copied to destination.jpg');
-    // });
 }

@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
     $('#button-newest').click(function(e) {
         e.preventDefault();
@@ -15,7 +15,7 @@ $(document).ready(function () {
         const progressbar = $('.progress');
         var barwidth = progressbar.width();
         var parentwidth = progressbar.offsetParent().width();
-        var percent = 100*barwidth/parentwidth;
+        var percent = 100 * barwidth / parentwidth;
         $('#button-newest').prop('disabled', true);
         $.ajax({
             url: "http://localhost:3000/progress",
@@ -26,8 +26,8 @@ $(document).ready(function () {
             percent = data;
             barwidth = progressbar.width();
             parentwidth = progressbar.offsetParent().width();
-            progressbar.width(percent * (parentwidth/100)-2);
-            if(percent <= 95) {
+            progressbar.width(percent * (parentwidth / 100) - 2);
+            if (percent <= 95) {
                 getProgress();
             } else {
                 $('#button-newest').prop('disabled', false);
