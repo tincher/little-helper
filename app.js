@@ -85,7 +85,7 @@ function log_string(string) {
 // copyfile with couchdb
 function copyNewestFiles() {
     // var srcpath = '/users/jojoe/desktop/';
-    var srcpath = '/home/pi/android/Interner Gemeinsamer Speicher/DCIM/Camera';
+    var srcpath = '/home/pi/android/Interner\ Gemeinsamer\ Speicher/DCIM/Camera';
     var destpath = '/home/pi/photos'
 
 
