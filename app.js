@@ -18,17 +18,17 @@ var photos = nano.db.use('photos');
 
 // init scipts
 const exec = require('child_process').exec;
-const testscript = exec('sh ~/little-helper/scripts/testscript.sh');
+// const testscript = exec('sh ~/little-helper/scripts/testscript.sh');
 const mountscript = exec('sh ~/little-helper/scripts/mount.sh');
-const unmountscript = exec('sh ~/little-helper/scripts/unmount.sh');
+// const unmountscript = exec('sh ~/little-helper/scripts/unmount.sh');
 
-// log stdout of testscript
-testscript.stdout.on('data', data => {
-    console.log(data);
-});
-testscript.stderr.on('data', data => {
-    console.log(data);
-});
+// // log stdout of testscript
+// testscript.stdout.on('data', data => {
+//     console.log(data);
+// });
+// testscript.stderr.on('data', data => {
+//     console.log(data);
+// });
 
 // log stdout of mountscript
 mountscript.stdout.on('data', data => {
@@ -38,13 +38,13 @@ mountscript.stderr.on('data', data => {
     console.log(data);
 });
 
-// log stdout of unmountscript
-unmountscript.stdout.on('data', data => {
-    console.log(data);
-});
-unmountscript.stderr.on('data', data => {
-    console.log(data);
-});
+// // log stdout of unmountscript
+// unmountscript.stdout.on('data', data => {
+// console.log(data);
+// });
+// unmountscript.stderr.on('data', data => {
+// console.log(data);
+// });
 
 // init progress for progressbar
 var progress = 100;
