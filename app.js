@@ -94,7 +94,9 @@ function copyNewestFiles() {
     var fileobjects = [];
 
     fs.readdir(srcpath, (err, files) => {
-        console.log(files.length);
+        if (err) {
+            console.log(err);
+        }
         photos.list({
             include_docs: true
         }, function(err, body) {
