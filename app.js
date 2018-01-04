@@ -94,7 +94,11 @@ function copyNewestFiles() {
     var fileobjects = [];
 
     fs.readdir(srcpath, (err, files) => {
+<<<<<<< HEAD
         console.log(files.length);
+=======
+        console.log(files);
+>>>>>>> 752f9230dedd231c530fc82c141198ef564571de
         photos.list({
             include_docs: true
         }, function(err, body) {
