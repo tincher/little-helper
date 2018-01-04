@@ -105,26 +105,24 @@ function copyNewestFiles() {
                         dbfiles.push(doc.doc.name);
                     });
                 }
-                // console.log(body.rows);
+                console.log(body.rows);
             }
-            if (dbfiles.length != 0) {
-                files.forEach(file => {
-                    if (!dbfiles.includes(file)) {
-                        filenames.push(file);
-                        obj = {
-                            name: file
-                        };
-                        console.log(obj);
-                        photos.insert(obj, (err, body, header) => {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                console.log("successfully");
-                            }
-                        });
-                    }
-                });
-            }
+            files.forEach(file => {
+                if (!dbfiles.includes(file)) {
+                    filenames.push(file);
+                    obj = {
+                        name: file
+                    };
+                    console.log(obj);
+                    photos.insert(obj, (err, body, header) => {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            console.log("successfully");
+                        }
+                    });
+                }
+            });
 
             //copy given file (path)
             filenames.forEach(docname => {
